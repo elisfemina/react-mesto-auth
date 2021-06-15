@@ -15,7 +15,7 @@ function PopupWithForm(props) {
           className={`popup__close-button popup__close-button_${props.name}`}
           onClick={props.onClose}></button>
         <form
-          class={`popup__form popup__form_${props.name}`}
+          className={`popup__form popup__form_${props.name}`}
           name={props.name}
           novalidate>
           {props.children}
