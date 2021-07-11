@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { api } from "../utils/Api";
+import Card from "./Card";
 
 function Main(props) {
   const [userName, setUserName] = useState("userName");
   const [userDescription, setUserDescription] = useState("userDescription");
   const [userAvatar, setUserAvatar] = useState("");
+  const [cards, setCards] = useState([]);
 
+  //Получить данные юзера
   useEffect(() => {
     api.getUserInfo().then((res) => {
       setUserName(res.name);
@@ -14,15 +17,33 @@ function Main(props) {
     });
   }, []);
 
+  //Получить карточки с сервера
+  const getCards = () => {
+    api.getInitialCards().then((res) => {
+      const formattedCards = res.map((card) => {
+        return {
+          id: card._id,
+          link: card.link,
+          name: card.name,
+          likes: card.likes.length,
+        };
+      });
+      setCards(formattedCards);
+    });
+  };
+
+  useEffect(() => {
+    getCards();
+  }, []);
+
   return (
     <main className="content">
       <section className="profile">
         <div className="profile__avatar-container">
           <img
-            // style={{ backgroundImage: `url(${userAvatar})` }}
+            style={{ backgroundImage: `url(${userAvatar})` }}
             className="profile__avatar"
-            src={userAvatar}
-            alt="Фото профиля"
+            alt="Аватар"
           />
           <button
             onClick={props.onEditAvatar}
@@ -46,8 +67,17 @@ function Main(props) {
           className="profile__add-button"
           type="button"></button>
       </section>
-
-      <section className="elements"></section>
+      <section className="elements">
+        {cards.map((card) => (
+          <Card
+            key={card.id}
+            link={card.link}
+            name={card.name}
+            likes={card.likes}
+            onCardClick={props.onCardClick}
+          />
+        ))}
+      </section>
     </main>
   );
 }

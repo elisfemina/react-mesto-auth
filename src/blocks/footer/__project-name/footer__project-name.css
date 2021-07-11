@@ -16,9 +16,10 @@
 @media screen and (min-width: 930px) {
     .footer__project-name {
         margin-top: 66px;
-        margin-bottom: 60px;
+        margin-bottom: 0px;
         max-width: 880px;
         font-size: 18px;
         line-height: 22px;
+        padding-bottom: 60px;
     }
 }
