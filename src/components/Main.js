@@ -10,41 +10,39 @@ function Main(props) {
 
   //Получить данные юзера
   useEffect(() => {
-    api.getUserInfo().then((res) => {
-      setUserName(res.name);
-      setUserDescription(res.about);
-      setUserAvatar(res.avatar);
-    });
+    api
+      .getUserInfo()
+      .then((res) => {
+        setUserName(res.name);
+        setUserDescription(res.about);
+        setUserAvatar(res.avatar);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   //Получить карточки с сервера
-  const getCards = () => {
-    api.getInitialCards().then((res) => {
-      const formattedCards = res.map((card) => {
-        return {
-          id: card._id,
-          link: card.link,
-          name: card.name,
-          likes: card.likes.length,
-        };
-      });
-      setCards(formattedCards);
-    });
-  };
-
   useEffect(() => {
-    getCards();
+    api
+      .getInitialCards()
+      .then((res) => {
+        const formattedCards = res.map((card) => {
+          return {
+            id: card._id,
+            link: card.link,
+            name: card.name,
+            likes: card.likes.length,
+          };
+        });
+        setCards(formattedCards);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
     <main className="content">
       <section className="profile">
         <div className="profile__avatar-container">
-          <img
-            style={{ backgroundImage: `url(${userAvatar})` }}
-            className="profile__avatar"
-            alt="Аватар"
-          />
+          <img src={userAvatar} className="profile__avatar" alt="Аватар" />
           <button
             onClick={props.onEditAvatar}
             className="profile__avatar-button"
@@ -70,6 +68,7 @@ function Main(props) {
       <section className="elements">
         {cards.map((card) => (
           <Card
+            card={card}
             key={card.id}
             link={card.link}
             name={card.name}

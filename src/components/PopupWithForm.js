@@ -17,8 +17,11 @@ function PopupWithForm(props) {
         <form
           className={`popup__form popup__form_${props.name}`}
           name={props.name}
-          novaidate>
+          noVaidate>
           {props.children}
+          <button type="submit" className="popup__button popup__save-button">
+            {props.btnText}
+          </button>
         </form>
       </div>
     </div>

@@ -26,10 +26,11 @@ function App() {
   }
 
   // Открытие поапа картинки при клике на карточку
-  function handleCardClick({ name, link }) {
+  function handleCardClick({ link, name }) {
     setImagePopupOpen(true);
-    setSelectedCard({ name, link });
+    setSelectedCard({ link, name });
   }
+
   //закрытие попапов
   function closeAllPopups() {
     setIsAddPlacePopupOpen(false);
@@ -37,9 +38,12 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setImagePopupOpen(false);
   }
+  //_________________________________________________________________________________________
+  // Спасибо за ревью! Извините, что не все "можно лучше" исправил. Исправлю в следующей. Дедлайн жёсткий :)
+  //_________________________________________________________________________________________
 
   return (
-    <body className="page">
+    <div className="page">
       <Header />
       <Main
         onEditProfile={handleEditProfileClick}
@@ -52,73 +56,66 @@ function App() {
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
         name="edit-form"
-        title="Редактировать профиль">
-        <>
-          <input
-            type="text"
-            id="name-card"
-            className="popup__field popup__field_name popup__field_edit-form"
-            name="name"
-            placeholder="Имя"
-            required
-            minLength="2"
-            maxLength="40"
-          />
-          <span className="error" id="name-card-error"></span>
-          <input
-            type="text"
-            id="about-myself"
-            className="popup__field popup__field_about popup__field_edit-form"
-            name="about-myself"
-            placeholder="О себе"
-            required
-            minLength="2"
-            maxLength="200"
-          />
-          <span className="error" id="about-myself-error"></span>
-          <button type="submit" className="popup__button popup__save-button">
-            Сохранить
-          </button>
-        </>
+        title="Редактировать профиль"
+        btnText="Сохранить">
+        <input
+          type="text"
+          id="name-card"
+          className="popup__field popup__field_name popup__field_edit-form"
+          name="name"
+          placeholder="Имя"
+          required
+          minLength="2"
+          maxLength="40"
+        />
+        <span className="error" id="name-card-error"></span>
+        <input
+          type="text"
+          id="about-myself"
+          className="popup__field popup__field_about popup__field_edit-form"
+          name="about-myself"
+          placeholder="О себе"
+          required
+          minLength="2"
+          maxLength="200"
+        />
+        <span className="error" id="about-myself-error"></span>
       </PopupWithForm>
 
       <PopupWithForm
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
         name="add-form"
-        title="Новое место">
-        <>
-          <input
-            type="text"
-            id="name-of-picture"
-            className="popup__field popup__field_add-form popup__field_name-of-picture"
-            name="name-of-picture"
-            placeholder="Название"
-            required
-            minLength="2"
-            maxLength="30"
-          />
-          <span className="error" id="name-of-picture-error"></span>
-          <input
-            type="url"
-            id="link"
-            className="popup__field popup__field_add-form popup__field_link"
-            name="link"
-            placeholder="Ссылка на картинку"
-            required
-          />
-          <span className="error" id="link-error"></span>
-          <button type="submit" className="popup__button popup__create-button">
-            Создать
-          </button>
-        </>
+        title="Новое место"
+        btnText="Создать">
+        <input
+          type="text"
+          id="name-of-picture"
+          className="popup__field popup__field_add-form popup__field_name-of-picture"
+          name="name-of-picture"
+          placeholder="Название"
+          required
+          minLength="2"
+          maxLength="30"
+        />
+        <span className="error" id="name-of-picture-error"></span>
+        <input
+          type="url"
+          id="link"
+          className="popup__field popup__field_add-form popup__field_link"
+          name="link"
+          placeholder="Ссылка на картинку"
+          required
+        />
+        <span className="error" id="link-error"></span>
       </PopupWithForm>
 
       <PopupWithForm
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
         name="change-avatar"
-        title="Обновить аватар">
+        title="Обновить аватар"
+        btnText="Сохранить">
         <input
           type="url"
           id="link-of-avatar"
@@ -128,23 +125,19 @@ function App() {
           required
         />
         <span className="error" id="link-of-avatar-error"></span>
-        <button type="submit" className="popup__button popup__save-button">
-          Сохранить
-        </button>
       </PopupWithForm>
 
-      <PopupWithForm name="delete-card" title="Вы уверены?">
-        <button type="button" className="popup__button popup__yes-button">
-          Да
-        </button>
-      </PopupWithForm>
+      <PopupWithForm
+        name="delete-card"
+        title="Вы уверены?"
+        btnText="Да"></PopupWithForm>
 
       <ImagePopup
         className="popup popup-photo"
         card={selectedCard}
         isOpen={isImagePopupOpen}
         onClose={closeAllPopups}></ImagePopup>
-    </body>
+    </div>
   );
 }
 
