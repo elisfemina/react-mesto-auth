@@ -84,5 +84,5 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
-
+//Экспортируйте по умолчанию экземпляр класса Api
 export default api;
