@@ -45,18 +45,18 @@ class Api {
     }).then(this._checkResponse);
   }
 
-  addLike(id) {
-    return fetch(`${this._baseUrl}/cards/likes/${id}`, {
-      method: "PUT",
-      headers: this._headers,
-    }).then(this._checkResponse);
-  }
-
-  removeLike(id) {
-    return fetch(`${this._baseUrl}/cards/likes/${id}`, {
-      method: "DELETE",
-      headers: this._headers,
-    }).then(this._checkResponse);
+  changeLikeCardStatus(id, isLiked) {
+    if (isLiked) {
+      return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+        method: "PUT",
+        headers: this._headers,
+      }).then(this._checkResponse);
+    } else {
+      return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+        method: "DELETE",
+        headers: this._headers,
+      }).then(this._checkResponse);
+    }
   }
 
   updateAvatar(link) {
