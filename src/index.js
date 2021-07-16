@@ -1,3 +1,5 @@
+// sprint 12 react-mesto-auth
+
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
