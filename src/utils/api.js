@@ -76,7 +76,7 @@ class Api {
     return Promise.reject(`Ошибка ${res.status}`);
   }
 }
-
+// https://auth.nomoreparties.co
 const api = new Api({
   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-24",
   headers: {
