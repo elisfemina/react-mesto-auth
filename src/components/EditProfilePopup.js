@@ -47,7 +47,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
         name="name"
         placeholder="Имя"
         required
-        /*minlength="2" maxlength="40"*/ value={name}
+        value={name}
         onChange={handleChangeName}
       />
       <span className="error" id="name-card-error">
@@ -60,7 +60,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
         name="about-myself"
         placeholder="О себе"
         required
-        /*minlength="2" maxlength="200" */ value={description}
+        value={description}
         onChange={handleChangeDescription}
       />
       <span className="error" id="about-myself-error">

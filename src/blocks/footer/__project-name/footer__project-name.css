@@ -3,12 +3,13 @@
     line-height: 17px;
     color: #545454;
     max-width: 282px;
-    margin: 48px auto 36px auto;
+    margin: 48px auto 0 auto;
+    padding-bottom: 36px;
 }
 
 @media screen and (min-width: 620px) {
     .footer__project-name {
-        margin-bottom: 60px;
+        padding-bottom: 60px;
         max-width: 581px;
     }
 }
@@ -16,10 +17,8 @@
 @media screen and (min-width: 930px) {
     .footer__project-name {
         margin-top: 66px;
-        margin-bottom: 0px;
         max-width: 880px;
         font-size: 18px;
         line-height: 22px;
-        padding-bottom: 60px;
     }
 }
