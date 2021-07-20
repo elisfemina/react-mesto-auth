@@ -16,14 +16,11 @@ class Api {
     }).then(this._checkResponse);
   }
 
-  editInfo(data) {
+  editInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify({
-        name: data.name,
-        about: data["about-myself"],
-      }),
+      body: JSON.stringify({ name, about }),
     }).then(this._checkResponse);
   }
 
@@ -40,6 +37,21 @@ class Api {
 
   removeCard(id) {
     return fetch(`${this._baseUrl}/cards/${id} `, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this._checkResponse);
+  }
+
+
+  addLike(id) {
+    return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+      method: "PUT",
+      headers: this._headers,
+    }).then(this._checkResponse);
+  }
+
+  removeLike(id) {
+    return fetch(`${this._baseUrl}/cards/likes/${id}`, {
       method: "DELETE",
       headers: this._headers,
     }).then(this._checkResponse);
@@ -86,4 +98,3 @@ const api = new Api({
 });
 
 export default api;
-
